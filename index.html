@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rumput Tetangga Selalu Lebih Hijau | KBDI</title>
+  <link rel="icon" href="https://edukbdi.github.io/logo_KBDI/kbdi_trans.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0f14;
+      --surface: #13161e;
+      --surface2: #1a1e2a;
+      --border: #2a2f3d;
+      --text: #e8e6e0;
+      --muted: #8a8fa0;
+      --accent: #e87722;
+      --highlight: #f5c842;
+      --highlight-bg: rgba(245, 200, 66, 0.15);
+      --spoiler-bg: #252a38;
+      --spoiler-revealed: #e8e6e0;
+      --good-id: #4caf7d;
+      --bad-id: #e05252;
+      --good-out: #e87722;
+      --bad-out: #555e72;
+      --colonial: #b8892a;
+      --colonial-bg: rgba(184, 137, 42, 0.08);
+    }
+
+    html.light {
+      --bg: #f5f2eb;
+      --surface: #fffdf7;
+      --surface2: #edeade;
+      --border: #d4cfc0;
+      --text: #1a1a1a;
+      --muted: #6b6560;
+      --accent: #e87722;
+      --highlight: #c8960a;
+      --highlight-bg: rgba(200, 150, 10, 0.13);
+      --spoiler-bg: #ccc8be;
+      --spoiler-revealed: #1a1a1a;
+      --good-id: #2d7a52;
+      --bad-id: #c0392b;
+      --good-out: #c45e10;
+      --bad-out: #888080;
+      --colonial: #8b5e20;
+      --colonial-bg: rgba(139, 94, 32, 0.08);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.8;
+      transition: background 0.3s, color 0.3s;
+      overflow-x: hidden;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 94vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 6rem 0 5rem;
+      overflow: hidden;
+    }
+
+    .hero-mesh {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 68% 15%, rgba(232,119,34,0.11) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 45% at 5% 85%, rgba(232,119,34,0.07) 0%, transparent 55%);
+    }
+
+    .hero-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.055;
+    }
+
+    .hero-ornament {
+      position: absolute;
+      top: 5.5rem;
+      right: 2.5rem;
+      width: 260px;
+      height: 260px;
+      opacity: 0.11;
+      animation: floatOrn 9s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatOrn {
+      from { transform: translateY(0) rotate(0deg); }
+      to   { transform: translateY(-18px) rotate(8deg); }
+    }
+
+    @media (max-width: 768px) {
+      .hero-ornament { width: 130px; height: 130px; top: 4rem; right: 1rem; opacity: 0.06; }
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 2rem;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-eyebrow-line { width: 2.5rem; height: 2px; background: var(--accent); }
+
+    .hero-eyebrow-text {
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 11vw, 8.5rem);
+      line-height: 0.88;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title .accent-line {
+      color: var(--accent);
+      display: block;
+    }
+
+    .hero-title .accent-line::after {
+      content: '';
+      display: block;
+      height: 4px;
+      width: 55%;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      margin-top: 0.25rem;
+    }
+
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 2.2vw, 1.22rem);
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .hero-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.28rem 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--muted);
+    }
+
+    .hero-tag.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .hero-scroll-ind {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--muted);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+
+    .hero-scroll-ind::after {
+      content: '';
+      width: 1px;
+      height: 3.5rem;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollpulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollpulse {
+      0%, 100% { opacity: 1; transform: scaleY(1); }
+      50% { opacity: 0.3; transform: scaleY(0.5); }
+    }
+
+    /* LEGEND REMOVED */
+
+    /* ARTICLE BODY */
+    .article-body {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-intro {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.08rem, 2.3vw, 1.28rem);
+      line-height: 1.95;
+      color: var(--text);
+      margin-bottom: 3.5rem;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-intro em { color: var(--accent); font-style: italic; }
+
+    /* SVG DIVIDERS */
+    .svg-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 3.5rem 0 1.5rem;
+    }
+
+    .svg-divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    /* COMPARISON */
+    .comparison-section { margin-bottom: 4.5rem; }
+
+    .section-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.8rem, 4.5vw, 2.7rem);
+      letter-spacing: 0.05em;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-bar {
+      width: 3.5rem;
+      height: 3px;
+      background: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    .comp-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .comp-card:hover {
+      border-color: rgba(232,119,34,0.35);
+      box-shadow: 0 4px 20px rgba(232,119,34,0.05);
+    }
+
+    .comp-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 600px) { .comp-row { grid-template-columns: 1fr; } }
+
+    .comp-cell {
+      padding: 1.3rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .comp-cell:first-child { border-right: 1px solid var(--border); }
+
+    @media (max-width: 600px) {
+      .comp-cell:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+    }
+
+    .comp-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .label-good-id  { color: var(--good-id); }
+    .label-bad-id   { color: var(--bad-id); }
+    .label-good-out { color: var(--good-out); }
+    .label-bad-out  { color: var(--bad-out); }
+
+    /* HIGHLIGHTED */
+    .highlighted {
+      background: var(--highlight-bg);
+      border-left: 3px solid var(--highlight);
+      padding: 0.9rem 1.1rem;
+      font-size: 0.91rem;
+      line-height: 1.7;
+      font-weight: 500;
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* SPOILER */
+    .spoiler-block {
+      background: var(--spoiler-bg);
+      border-radius: 5px;
+      padding: 1rem 1.1rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+      position: relative;
+      min-height: 56px;
+    }
+
+    .spoiler-block:hover {
+      background: color-mix(in srgb, var(--spoiler-bg) 82%, var(--accent) 18%);
+    }
+
+    .spoiler-hint {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      font-size: 0.76rem;
+      font-style: italic;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      transition: opacity 0.2s;
+      pointer-events: none;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    /* Animated phone */
+    .phone-anim {
+      display: block;
+      margin: 0 auto 1.5rem;
+      position: relative;
+      width: 80px;
+      height: 140px;
+    }
+
+    .phone-body {
+      position: absolute;
+      inset: 0;
+      border: 2.5px solid var(--accent);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+
+    .phone-screen {
+      position: absolute;
+      top: 14px; left: 7px; right: 7px; bottom: 22px;
+      background: var(--surface2);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 5px; left: 50%; transform: translateX(-50%);
+      width: 20px; height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+    }
+
+    .phone-btn {
+      position: absolute;
+      bottom: 8px; left: 50%; transform: translateX(-50%);
+      width: 18px; height: 5px;
+      background: var(--border);
+      border-radius: 3px;
+    }
+
+    /* Scrolling content on phone screen */
+    .phone-feed {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 4px;
+      animation: phonescroll 4s linear infinite;
+    }
+
+    @keyframes phonescroll {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(-55%); }
+    }
+
+    .phone-card {
+      border-radius: 4px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+
+    .phone-card.red  { background: rgba(224,82,82,0.5); }
+    .phone-card.orange { background: rgba(232,119,34,0.4); }
+    .phone-card.grey { background: rgba(85,94,114,0.3); }
+
+    /* Notification ping */
+    .phone-ping {
+      position: absolute;
+      top: -5px; right: -5px;
+      width: 14px; height: 14px;
+      background: var(--bad-id);
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+      animation: pingpulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pingpulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50%       { transform: scale(1.3); opacity: 0.7; }
+    }
+
+    .spoiler-block.revealed .spoiler-hint { opacity: 0; }
+
+    .spoiler-content {
+      opacity: 0;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text);
+      transition: opacity 0.35s 0.1s;
+      pointer-events: none;
+    }
+
+    .spoiler-block.revealed .spoiler-content {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* PULL QUOTE */
+    .pull-quote {
+      border-left: 4px solid var(--accent);
+      padding: 1.5rem 2rem;
+      margin: 3rem 0;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.02rem, 2.2vw, 1.25rem);
+      font-style: italic;
+      line-height: 1.65;
+      background: var(--surface);
+      border-radius: 0 6px 6px 0;
+      position: relative;
+    }
+
+    .pull-quote::before {
+      content: '\201C';
+      position: absolute;
+      top: -0.3rem;
+      left: 1rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      color: var(--accent);
+      opacity: 0.22;
+      line-height: 1;
+    }
+
+    .pull-quote cite {
+      display: block;
+      margin-top: 0.8rem;
+      font-size: 0.74rem;
+      font-style: normal;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* STAT BAND */
+    .stat-band {
+      background: var(--surface2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2rem;
+      margin: 3.5rem -2rem;
+    }
+
+    .stat-band-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+      gap: 2.5rem;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label { font-size: 0.74rem; color: var(--muted); line-height: 1.45; }
+
+    /* COLONIAL SECTION */
+    .colonial-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--colonial);
+      border-radius: 0 8px 8px 0;
+      padding: 2.5rem 2rem;
+      margin: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .colonial-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--colonial-bg);
+      pointer-events: none;
+    }
+
+    .colonial-watermark {
+      position: absolute;
+      right: -1.5rem;
+      bottom: -1.5rem;
+      opacity: 0.05;
+      width: 210px;
+      color: var(--colonial);
+    }
+
+    .colonial-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--colonial-bg);
+      border: 1px solid var(--colonial);
+      border-radius: 3px;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.63rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--colonial);
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+
+    .colonial-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      line-height: 1.1;
+      position: relative;
+    }
+
+    .colonial-body {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+
+    .colonial-body strong { color: var(--accent); }
+
+    .colonial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1.8rem;
+      position: relative;
+    }
+
+    @media (max-width: 600px) { .colonial-grid { grid-template-columns: 1fr; } }
+
+    .colonial-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.2rem;
+    }
+
+    .colonial-card-label {
+      font-size: 0.61rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .colonial-card-label.shown { color: var(--highlight); }
+    .colonial-card-label.hidden-lbl { color: var(--bad-out); }
+
+    .colonial-card .spoiler-block {
+      background: var(--spoiler-bg);
+      min-height: 52px;
+    }
+
+    /* SVG BIAS CHART */
+    .svg-break {
+      margin: 4rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .svg-break-caption {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.86rem;
+      color: var(--muted);
+      text-align: center;
+      max-width: 500px;
+    }
+
+    /* KOMENTAR INTERNET — thread style */
+    .komentar-section {
+      margin: 3.5rem 0;
+    }
+
+    .komentar-label {
+      font-size: 0.63rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .komentar-intro {
+      font-size: 0.92rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .komentar-thread {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    /* Top-level komentar */
+    .komentar-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.3rem;
+      display: flex;
+      gap: 0.9rem;
+      align-items: flex-start;
+    }
+
+    .komentar-item--ironi {
+      border-color: rgba(232,119,34,0.3);
+      background: var(--surface2);
+    }
+
+    /* Avatar */
+    .kav {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      width: 2.4rem;
+      text-align: center;
+      margin-top: 0.05rem;
+    }
+
+    .kav.sm {
+      font-size: 1.15rem;
+      width: 1.8rem;
+    }
+
+    /* Body */
+    .kbody { flex: 1; min-width: 0; }
+
+    .kmeta {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: 0.3rem;
+      flex-wrap: wrap;
+    }
+
+    .kname {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .komentar-item--ironi .kname { color: var(--accent); }
+
+    .ktime {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .ktext {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      word-break: break-word;
+    }
+
+    .kreact {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    /* Reply list */
+    .kreply-list {
+      margin-top: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 2px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .kreply {
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+    }
+
+    .kreply--ironi .kname { color: var(--accent); }
+    .kreply--ironi .ktext { color: var(--text); }
+
+    .komentar-footer {
+      margin-top: 1.2rem;
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .komentar-footer em { color: var(--accent); font-style: normal; font-weight: 600; }
+
+    /* IDE KONTEN SARKAS */
+    .ide-konten {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--highlight);
+      border-radius: 8px;
+      padding: 2.5rem;
+      margin: 3rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ide-konten::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(245,200,66,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .ide-konten-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(245,200,66,0.12);
+      border: 1px solid var(--highlight);
+      border-radius: 3px;
+      padding: 0.22rem 0.7rem;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--highlight);
+      margin-bottom: 1rem;
+    }
+
+    html.light .ide-konten-badge {
+      background: rgba(200,150,10,0.1);
+      border-color: var(--highlight);
+      color: var(--highlight);
+    }
+
+    .ide-konten-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      letter-spacing: 0.05em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .ide-konten-body {
+      font-size: 0.95rem;
+      line-height: 1.82;
+      color: var(--text);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .ide-konten-body em { color: var(--accent); font-style: italic; }
+    .ide-konten-body strong { color: var(--accent); font-weight: 600; }
+
+    .ide-konten-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+
+    .ide-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.9rem 1.1rem;
+    }
+
+    .ide-step-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--highlight);
+      line-height: 1;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    html.light .ide-step-num { opacity: 0.9; }
+
+    .ide-step-text {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--text);
+      padding-top: 0.15rem;
+    }
+
+    .ide-konten-kicker {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 1.2rem;
+      margin-top: 0.5rem;
+      position: relative;
+    }
+
+    /* CONTOH VIRAL DAENDELS */
+    .ide-contoh-viral {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--bad-id);
+      border-radius: 6px;
+      padding: 1.4rem;
+      margin: 1.5rem 0;
+    }
+
+    .ide-contoh-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bad-id);
+      margin-bottom: 1rem;
+    }
+
+    .ide-contoh-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .ide-contoh-video {
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000;
+      border: 1px solid var(--border);
+    }
+
+    .ide-contoh-video video {
+      width: 100%;
+      display: block;
+      max-height: 360px;
+      object-fit: contain;
+      background: #000;
+    }
+
+    .ide-contoh-text { flex: 1; }
+
+    .ide-contoh-judul {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      line-height: 1.4;
+    }
+
+    .ide-contoh-desc {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .ide-contoh-desc em { color: var(--accent); font-style: italic; }
+    .ide-contoh-desc strong { color: var(--text); font-weight: 600; }
+
+    .ide-contoh-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(232,119,34,0.3);
+      padding-bottom: 1px;
+      transition: border-color 0.2s, color 0.2s;
+      margin-top: 0.3rem;
+    }
+
+    .ide-contoh-link:hover {
+      color: var(--text);
+      border-color: var(--text);
+    }
+
+    /* OUTDOOR */
+    .outdoor-section {
+      background: var(--surface2);
+      border-radius: 12px;
+      padding: 3.5rem 2.5rem;
+      margin: 4rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .outdoor-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(232,119,34,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .outdoor-icon { display: block; margin: 0 auto 1.5rem; position: relative; }
+
+    .outdoor-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5.5vw, 3.5rem);
+      letter-spacing: 0.05em;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+
+    .outdoor-body {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.08rem;
+      font-style: italic;
+      line-height: 1.85;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .outdoor-body strong { color: var(--text); font-style: normal; }
+
+    /* PROSE */
+    .prose { font-size: 1rem; line-height: 1.9; }
+    .prose p { margin-bottom: 1.5rem; }
+    .prose strong { color: var(--accent); font-weight: 600; }
+    .prose em { font-style: italic; color: var(--muted); }
+
+    /* CLOSING */
+    .closing {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 3rem;
+      margin-top: 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .closing-ornament {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      opacity: 0.04;
+      width: 180px;
+    }
+
+    .closing-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 1rem;
+    }
+
+    .closing-body {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.06rem;
+      font-style: italic;
+      line-height: 1.82;
+      color: var(--muted);
+      max-width: 580px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .closing-kicker {
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    /* SOURCES */
+    .sources {
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .sources-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .sources-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+
+    .sources-list li {
+      font-size: 0.77rem;
+      color: var(--muted);
+      padding-left: 1rem;
+      border-left: 2px solid var(--border);
+      line-height: 1.5;
+    }
+
+    /* SCROLL REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .article-body { padding: 3rem 1.2rem; }
+      .hero { padding: 5.5rem 1.2rem 4rem; min-height: 85vh; }
+      .outdoor-section { padding: 2.5rem 1.2rem; }
+      .closing { padding: 2rem 1.2rem; }
+      .stat-band { padding: 2rem 1.2rem; margin: 3rem -1.2rem; }
+      .colonial-section { padding: 1.8rem 1.2rem; }
+      .ide-konten { padding: 1.8rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-mesh"></div>
+
+  <!-- SVG hexgrid background -->
+  <svg class="hero-pattern" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <pattern id="hexg" x="0" y="0" width="60" height="52" patternUnits="userSpaceOnUse">
+        <polygon points="30,2 58,17 58,35 30,50 2,35 2,17" fill="none" stroke="#e87722" stroke-width="0.8"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#hexg)"/>
+  </svg>
+
+  <!-- Floating compass ornament -->
+  <svg class="hero-ornament" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="95" fill="none" stroke="#e87722" stroke-width="1.5"/>
+    <circle cx="100" cy="100" r="72" fill="none" stroke="#e87722" stroke-width="0.8"/>
+    <circle cx="100" cy="100" r="50" fill="none" stroke="#e87722" stroke-width="0.5"/>
+    <line x1="5" y1="100" x2="195" y2="100" stroke="#e87722" stroke-width="0.6"/>
+    <line x1="100" y1="5" x2="100" y2="195" stroke="#e87722" stroke-width="0.6"/>
+    <polygon points="100,18 106,94 100,82 94,94" fill="#e87722"/>
+    <polygon points="100,182 106,106 100,118 94,106" fill="#e87722" opacity="0.4"/>
+    <polygon points="18,100 94,106 82,100 94,94" fill="#e87722" opacity="0.4"/>
+    <polygon points="182,100 106,106 118,100 106,94" fill="#e87722"/>
+    <circle cx="100" cy="100" r="5" fill="#e87722"/>
+    <text x="100" y="14" text-anchor="middle" font-size="9" fill="#e87722" font-family="sans-serif" letter-spacing="1">U</text>
+    <text x="100" y="194" text-anchor="middle" font-size="9" fill="#e87722" font-family="sans-serif" letter-spacing="1">S</text>
+    <text x="188" y="104" text-anchor="middle" font-size="9" fill="#e87722" font-family="sans-serif">T</text>
+    <text x="12" y="104" text-anchor="middle" font-size="9" fill="#e87722" font-family="sans-serif">B</text>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="hero-eyebrow-text">Sosial &amp; Kritik Media</span>
+    </div>
+    <h1 class="hero-title">
+      Rumput Tetangga
+      <span class="accent-line">Selalu Lebih Hijau</span>
+    </h1>
+    <p class="hero-subtitle">
+      Tentang seni memilih fakta secara selektif, menjual inferioritas kolektif sebagai pencerahan, dan algoritma yang dengan senang hati mengamplifikasinya.
+    </p>
+    <div class="hero-tags">
+      <span class="hero-tag active">Sosial</span>
+      <span class="hero-tag">Kritik Media</span>
+      <span class="hero-tag">Sejarah</span>
+      <span class="hero-tag">KBDI · 2025</span>
+    </div>
+  </div>
+  <div class="hero-scroll-ind">Scroll</div>
+</div>
+
+
+
+<!-- ARTIKEL -->
+<div class="article-body">
+
+  <div class="section-intro reveal">
+    Kamu pasti pernah menonton video berjudul <em>"Kenapa Jepang Bisa, Indonesia Tidak?"</em> atau <em>"Lihat Jalanan Singapura vs Indonesia."</em> Formulanya sederhana, algoritmanya senang, dan penontonnya merasa baru saja mendapat pencerahan. Padahal yang terjadi adalah sesuatu yang jauh lebih tua dari internet: kita sedang melihat rumput tetangga dari balik pagar yang sangat tinggi — tanpa pernah mau tahu kondisi tanahnya.
+  </div>
+
+  <!-- SECTION 1: INDONESIA -->
+  <div class="comparison-section reveal">
+    <div class="svg-divider">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="26" height="26" rx="3" stroke="#e87722" stroke-width="1.5"/>
+        <path d="M7 14h14M14 7v14" stroke="#e87722" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <h2 class="section-heading">🇮🇩 Laporan tentang Indonesia</h2>
+      <div class="svg-divider-line"></div>
+    </div>
+    <div class="section-bar"></div>
+
+    <div class="comp-card">
+      <div class="comp-row">
+        <div class="comp-cell">
+          <span class="comp-label label-good-id">✦ Hal Baik — Tersembunyi</span>
+          <div class="spoiler-block" onclick="this.classList.toggle('revealed')">
+            <div class="spoiler-hint">👁 Tenang, ini bukan kebaikan — pasti ada sisi gelapnya. Klik kalau berani.</div>
+            <div class="spoiler-content">Harga BBM bersubsidi Indonesia termasuk paling terjangkau di Asia Tenggara. Pertalite sekitar Rp 10.000/liter — jauh di bawah harga pasar internasional — karena negara menanggung selisihnya lewat subsidi energi senilai ratusan triliun rupiah per tahun.</div>
+          </div>
+        </div>
+        <div class="comp-cell">
+          <span class="comp-label label-bad-id">✗ Hal Buruk — Disorot</span>
+          <div class="highlighted">UMR Indonesia masih sangat rendah. Pekerja di Jakarta hanya mendapat sekitar Rp 5 juta per bulan — jauh di bawah standar "layak" versi banyak konten kreator.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-row">
+        <div class="comp-cell">
+          <span class="comp-label label-good-id">✦ Hal Baik — Tersembunyi</span>
+          <div class="spoiler-block" onclick="this.classList.toggle('revealed')">
+            <div class="spoiler-hint">👁 Informasi ini bisa merusak narasi. Klik kalau mau tahu.</div>
+            <div class="spoiler-content">Indonesia adalah produsen pangan terbesar di dunia: penghasil kelapa sawit nomor satu, kopi dan kakao kelas dunia, dan penyuplai rempah-rempah yang sejak abad ke-16 menjadi komoditas paling diperebutkan bangsa-bangsa Eropa.</div>
+          </div>
+        </div>
+        <div class="comp-cell">
+          <span class="comp-label label-bad-id">✗ Hal Buruk — Disorot</span>
+          <div class="highlighted">Infrastruktur daerah terpencil masih jauh tertinggal. Banyak jalan rusak, listrik belum merata, akses internet terbatas.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-row">
+        <div class="comp-cell">
+          <span class="comp-label label-good-id">✦ Hal Baik — Tersembunyi</span>
+          <div class="spoiler-block" onclick="this.classList.toggle('revealed')">
+            <div class="spoiler-hint">👁 Bagian ini biasanya dipotong di menit ke-3. Klik untuk lanjut.</div>
+            <div class="spoiler-content">BPJS Kesehatan menanggung lebih dari 270 juta peserta — menjadikannya program jaminan kesehatan nasional terbesar di dunia dalam satu sistem tunggal. Premi kelas III hanya Rp 42.000/bulan, sudah mencakup rawat inap, operasi, hingga cuci darah. Bandingkan dengan Amerika Serikat: rata-rata premi asuransi kesehatan swasta mencapai USD 500–700/bulan per orang, dan sekitar 25–30 juta warga AS sama sekali tidak punya asuransi kesehatan.</div>
+          </div>
+        </div>
+        <div class="comp-cell">
+          <span class="comp-label label-bad-id">✗ Hal Buruk — Disorot</span>
+          <div class="highlighted">BPJS sering disebut lambat, antreannya panjang, dan fasilitasnya tidak merata. Bukti bahwa sistem kesehatan Indonesia memang memprihatinkan.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-row">
+        <div class="comp-cell">
+          <span class="comp-label label-good-id">✦ Hal Baik — Tersembunyi</span>
+          <div class="spoiler-block" onclick="this.classList.toggle('revealed')">
+            <div class="spoiler-hint">👁 Fakta yang tidak viral. Klik untuk membuka.</div>
+            <div class="spoiler-content">Indonesia menjaga hubungan diplomatik aktif dengan hampir seluruh negara di dunia — kompleksitas yang tidak sebanding dengan negara kecil manapun. Paspor Indonesia memberi akses visa-free/VOA ke lebih dari 70 negara.</div>
+          </div>
+        </div>
+        <div class="comp-cell">
+          <span class="comp-label label-bad-id">✗ Hal Buruk — Disorot</span>
+          <div class="highlighted">Paspor Indonesia lebih lemah dari paspor Timor-Leste. Negara yang baru merdeka 2002 itu punya akses visa-free lebih banyak — sungguh memalukan.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pull-quote reveal">
+    Paspor Timor-Leste diuntungkan perjanjian bilateral spesifik — bukan indikator kemajuan bangsa. Membandingkan akses paspor dua negara berpenduduk 1,3 juta vs 240 juta tanpa konteks diplomatik adalah seperti mengkritik bus karena tidak bisa parkir di trotoar seperti becak.
+    <cite>— Analisis perbandingan selektif, konteks Henley Passport Index 2024</cite>
+  </div>
+
+  <!-- KOMENTAR INTERNET SECTION -->
+  <div class="komentar-section reveal">
+    <div class="komentar-label">💬 Indonesia di Internet — Setiap Hari</div>
+    <p class="komentar-intro">Tidak perlu mengarang. Cukup buka kolom komentar video perbandingan mana saja.</p>
+
+    <div class="komentar-thread">
+
+      <!-- Thread 1 -->
+      <div class="komentar-item">
+        <div class="kav">🧑</div>
+        <div class="kbody">
+          <div class="kmeta"><span class="kname">Raka Pratama</span><span class="ktime">2 hari lalu</span></div>
+          <p class="ktext">miris banget sumpah. negara kita tuh udah ketinggalan jauh bgt sama negara2 lain. entah kapan bisa maju 😔</p>
+          <div class="kreact"><span>👍 14rb</span><span>💬 847 balasan</span></div>
+
+          <div class="kreply-list">
+            <div class="kreply">
+              <div class="kav sm">😤</div>
+              <div class="kbody">
+                <div class="kmeta"><span class="kname">Dian Setiawan</span><span class="ktime">2 hari lalu</span></div>
+                <p class="ktext">bner bgt, ini bukan berarti gw ga cinta indo ya. tp fakta ya fakta. harus jujur sm diri sendiri</p>
+                <div class="kreact"><span>👍 6,2rb</span></div>
+              </div>
+            </div>
+            <div class="kreply">
+              <div class="kav sm">✈️</div>
+              <div class="kbody">
+                <div class="kmeta"><span class="kname">Andri_Abroad</span><span class="ktime">1 hari lalu</span></div>
+                <p class="ktext">makanya gw cabut ke luar. udh 3 thn di jerman, beda bgt kualitas hidupnya. di sana orang dihargai, sistem jalan, ga ada yg minta duit sembarangan</p>
+                <div class="kreact"><span>👍 4,1rb</span></div>
+              </div>
+            </div>
+            <div class="kreply">
+              <div class="kav sm">🤷</div>
+              <div class="kbody">
+                <div class="kmeta"><span class="kname">Siti Nurhaliza</span><span class="ktime">23 jam lalu</span></div>
+                <p class="ktext">@Andri_Abroad wih enak bgt. disana kerja apa kak? gaji brp?</p>
+                <div class="kreact"><span>👍 312</span></div>
+              </div>
+            </div>
+            <div class="kreply kreply--ironi">
+              <div class="kav sm">🙋</div>
+              <div class="kbody">
+                <div class="kmeta"><span class="kname">Budi Hartono</span><span class="ktime">18 jam lalu</span></div>
+                <p class="ktext">@Andri_Abroad di jerman lagi ada demo besar2an anti imigran tuh bro, aman ga?</p>
+                <div class="kreact"><span>👍 89</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thread 2 -->
+      <div class="komentar-item">
+        <div class="kav">👴</div>
+        <div class="kbody">
+          <div class="kmeta"><span class="kname">Pak Hendra</span><span class="ktime">3 hari lalu</span></div>
+          <p class="ktext">jujur ya zaman belanda dulu infrastrukturnya lebih bagus. liat tuh bangunan2nya masih berdiri sampe sekarang. kita ga bisa bikin yg kayak gitu</p>
+          <div class="kreact"><span>👍 9,3rb</span><span>💬 1,2rb balasan</span></div>
+
+          <div class="kreply-list">
+            <div class="kreply">
+              <div class="kav sm">😭</div>
+              <div class="kbody">
+                <div class="kmeta"><span class="kname">nadia_historylover</span><span class="ktime">3 hari lalu</span></div>
+                <p class="ktext">SETUJU. seandainya belanda ga pergi mungkin indo udah kayak singapur skrg 😭😭</p>
+                <div class="kreact"><span>👍 5,7rb</span></div>
+              </div>
+            </div>
+            <div class="kreply kreply--ironi">
+              <div class="kav sm">📚</div>
+              <div class="kbody">
+                <div class="kmeta"><span class="kname">Fajar_sejarawan</span><span class="ktime">2 hari lalu</span></div>
+                <p class="ktext">Foto gedung2 itu kawasan khusus Eropa, pribumi ga boleh tinggal di sana. Dan bangunannya dibikin pake kerja rodi — rakyat dipaksa kerja gratis. Boleh dikagumi gedungnya, tapi konteksnya jg harus tau</p>
+                <div class="kreact"><span>👍 203</span></div>
+              </div>
+            </div>
+            <div class="kreply">
+              <div class="kav sm">😡</div>
+              <div class="kbody">
+                <div class="kmeta"><span class="kname">Pak Hendra</span><span class="ktime">2 hari lalu</span></div>
+                <p class="ktext">@Fajar_sejarawan ah sok tau. itu kan versi pemerintah sekarang buat nutupin kegagalan mereka sendiri</p>
+                <div class="kreact"><span>👍 1,4rb</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thread 3 -->
+      <div class="komentar-item">
+        <div class="kav">📱</div>
+        <div class="kbody">
+          <div class="kmeta"><span class="kname">gilang_opinionated</span><span class="ktime">1 hari lalu</span></div>
+          <p class="ktext">paspor kita kalah sm timor leste guys. TIMOR LESTE. negara yg baru merdeka 2002. udah cukup sih buktinya</p>
+          <div class="kreact"><span>👍 7,8rb</span><span>💬 503 balasan</span></div>
+
+          <div class="kreply-list">
+            <div class="kreply">
+              <div class="kav sm">💀</div>
+              <div class="kbody">
+                <div class="kmeta"><span class="kname">Kevin Wijaya</span><span class="ktime">1 hari lalu</span></div>
+                <p class="ktext">WKWKWK TIMOR LESTE BRO. kita kalah sm negara yg bahkan blm selesai dibangun. memalukan</p>
+                <div class="kreact"><span>👍 3,2rb</span></div>
+              </div>
+            </div>
+            <div class="kreply kreply--ironi">
+              <div class="kav sm">🤓</div>
+              <div class="kbody">
+                <div class="kmeta"><span class="kname">Rina Kusuma</span><span class="ktime">20 jam lalu</span></div>
+                <p class="ktext">Passport index itu ngukur visa-free access, bukan kemajuan negara. Timor Leste dapet keistimewaan dari perjanjian bilateral tertentu. Beda konteks sama negara 240 juta penduduk</p>
+                <div class="kreact"><span>👍 67</span></div>
+              </div>
+            </div>
+            <div class="kreply">
+              <div class="kav sm">🙄</div>
+              <div class="kbody">
+                <div class="kmeta"><span class="kname">gilang_opinionated</span><span class="ktime">19 jam lalu</span></div>
+                <p class="ktext">@Rina Kusuma alasan mulu. itu namanya denial</p>
+                <div class="kreact"><span>👍 2,1rb</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thread Afrika Selatan + KPR -->
+      <div class="komentar-item">
+        <div class="kav">🏘️</div>
+        <div class="kbody">
+          <div class="kmeta"><span class="kname">properti_watch_id</span><span class="ktime">5 jam lalu</span></div>
+          <p class="ktext">Di Afrika Selatan, 72% tanah produktif masih dikuasai minoritas kulit putih warisan Apartheid. Orang kulit hitam yang mau beli tanah ketemu harga pasar yang emang ga pernah dirancang buat mereka. Reformasi agraria udah dibahas puluhan tahun tapi mandek terus karena tekanan dari kelompok yang diuntungkan sistem lama. Sampai sekarang ketimpangan kepemilikan tanah di Afsel salah satu yang tertinggi di dunia</p>
+          <div class="kreact"><span>👍 234</span><span>💬 41 balasan</span></div>
+
+          <div class="kreply-list">
+            <div class="kreply kreply--ironi">
+              <div class="kav sm">😤</div>
+              <div class="kbody">
+                <div class="kmeta"><span class="kname">Rizky_properti</span><span class="ktime">4 jam lalu</span></div>
+                <p class="ktext">masih mendingan mereka, ga punya tanah ya udah ga punya, simpel, ga ada yang maksa beli, ga ada yang nawarin "solusi" berupa utang 30 tahun yang penuh jebakan administrasi</p>
+                <div class="kreact"><span>👍 1,8rb</span></div>
+              </div>
+            </div>
+            <div class="kreply kreply--ironi">
+              <div class="kav sm">🏠</div>
+              <div class="kbody">
+                <div class="kmeta"><span class="kname">Rizky_properti</span><span class="ktime">4 jam lalu</span></div>
+                <p class="ktext">di sini harga rumah Jakarta naik 300% dalam 10 tahun, UMR naik 8%, tapi pemerintah bilang tenang ada KPR. padahal KPR itu bawa PPN 11%, BPHTB 5%, PBB tiap tahun selama cicilan belum lunas, biaya notaris, asuransi jiwa wajib dari bank. rumahnya belum jadi milik kita selama 30 tahun, tapi pajaknya udah jalan dari hari pertama</p>
+                <div class="kreact"><span>👍 2,3rb</span></div>
+              </div>
+            </div>
+            <div class="kreply kreply--ironi">
+              <div class="kav sm">💀</div>
+              <div class="kbody">
+                <div class="kmeta"><span class="kname">Rizky_properti</span><span class="ktime">3 jam lalu</span></div>
+                <p class="ktext">dan pemerintahnya bangga karena angka KPR naik. lupa nanya — naik KPR-nya, apa naik utangnya?</p>
+                <div class="kreact"><span>👍 3,1rb</span></div>
+              </div>
+            </div>
+            <div class="kreply">
+              <div class="kav sm">🙄</div>
+              <div class="kbody">
+                <div class="kmeta"><span class="kname">optimis_selalu123</span><span class="ktime">2 jam lalu</span></div>
+                <p class="ktext">lebay amat. KPR itu solusi buat yang ga mampu beli cash. harusnya bersyukur masih ada opsinya</p>
+                <div class="kreact"><span>👍 892</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thread 4 - ironi penutup -->
+      <div class="komentar-item komentar-item--ironi">
+        <div class="kav">🏠</div>
+        <div class="kbody">
+          <div class="kmeta"><span class="kname">Mbak Wulan</span><span class="ktime">14 jam lalu</span></div>
+          <p class="ktext">baru balik dari pasar. jalanan biasa aja, ga ada yg hancur. warung rame. tetangga pd sehat2. langit biru. ini yg hancur tuh di mana ya sebenernya 🤔</p>
+          <div class="kreact"><span>👍 41</span><span>💬 78 balasan</span></div>
+
+          <div class="kreply-list">
+            <div class="kreply">
+              <div class="kav sm">😒</div>
+              <div class="kbody">
+                <div class="kmeta"><span class="kname">Raka Pratama</span><span class="ktime">13 jam lalu</span></div>
+                <p class="ktext">typical orang yg ga mau liat realita. coba keluar dr zona nyaman deh</p>
+                <div class="kreact"><span>👍 876</span></div>
+              </div>
+            </div>
+            <div class="kreply kreply--ironi">
+              <div class="kav sm">🏠</div>
+              <div class="kbody">
+                <div class="kmeta"><span class="kname">Mbak Wulan</span><span class="ktime">12 jam lalu</span></div>
+                <p class="ktext">@Raka Pratama gw baru dari pasar, itu zona luar apa bukan 😭</p>
+                <div class="kreact"><span>👍 38</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <p class="komentar-footer">Komentar yang <em>masuk akal</em> biasanya tenggelam di bawah ribuan likes komentar yang lebih dramatis. Begitulah algoritmanya bekerja.</p>
+  </div>
+
+  <!-- SECTION 2: NEGARA LUAR -->
+  <div class="comparison-section reveal">
+    <div class="svg-divider">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="14" cy="14" r="12" stroke="#e87722" stroke-width="1.5"/>
+        <path d="M14 2a12 12 0 010 24M2 14h24" stroke="#e87722" stroke-width="0.9" stroke-dasharray="3 2"/>
+      </svg>
+      <h2 class="section-heading">🌍 Laporan tentang Negara Lain</h2>
+      <div class="svg-divider-line"></div>
+    </div>
+    <div class="section-bar"></div>
+
+    <div class="comp-card">
+      <div class="comp-row">
+        <div class="comp-cell">
+          <span class="comp-label label-good-out">★ Jepang — Disorot</span>
+          <div class="highlighted">Jepang punya kereta bawah tanah yang luar biasa tepat waktu, bersih, efisien. Keterlambatan rata-rata hanya hitungan detik. Sungguh peradaban tinggi.</div>
+        </div>
+        <div class="comp-cell">
+          <span class="comp-label label-bad-out">— Dibandingkan Indonesia — Tersembunyi</span>
+          <div class="spoiler-block" onclick="this.classList.toggle('revealed')">
+            <div class="spoiler-hint">👁 Terlalu kontekstual untuk dijadikan thumbnail. Klik.</div>
+            <div class="spoiler-content">Jepang punya "Karoshi" — kematian akibat kelelahan kerja yang diakui secara legal. Angka bunuh diri konsisten tinggi, jauh di atas Indonesia. Hikikomori — penarikan diri total dari sosial — menjangkiti jutaan anak muda. Sistem kereta Jepang dibangun selama 60+ tahun dengan investasi negara masif. Indonesia baru mulai serius membangun MRT tahun 2019 — dan sudah berjalan.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-row">
+        <div class="comp-cell">
+          <span class="comp-label label-good-out">★ Korea Selatan — Disorot</span>
+          <div class="highlighted">Korea Selatan punya industri hiburan dan teknologi yang mendunia. K-Pop, K-Drama, Samsung, Hyundai — bangkit dari kehancuran perang menjadi raksasa modern. Indonesia kapan?</div>
+        </div>
+        <div class="comp-cell">
+          <span class="comp-label label-bad-out">— Dibandingkan Indonesia — Tersembunyi</span>
+          <div class="spoiler-block" onclick="this.classList.toggle('revealed')">
+            <div class="spoiler-hint">👁 Bagian yang tidak pernah masuk reels. Klik untuk lihat.</div>
+            <div class="spoiler-content">Angka kelahiran Korsel 0,72 — terendah di dunia. Warganya memilih tidak punya anak karena tekanan hidup yang ekstrem. Jam kerja tertinggi di OECD. Depresi anak muda di level krisis. Indonesia dengan segala kekurangannya masih punya angka kelahiran 2,1 — cukup untuk menjaga populasi tetap stabil dan produktif.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-row">
+        <div class="comp-cell">
+          <span class="comp-label label-good-out">★ Iran — Disorot</span>
+          <div class="highlighted">Iran berani mandiri dan melawan tekanan Barat. Berdaulat penuh atas sumber daya energinya. Tidak tunduk pada hegemoni siapapun. Indonesia terlalu penurut.</div>
+        </div>
+        <div class="comp-cell">
+          <span class="comp-label label-bad-out">— Dibandingkan Indonesia — Tersembunyi</span>
+          <div class="spoiler-block" onclick="this.classList.toggle('revealed')">
+            <div class="spoiler-hint">👁 Ini yang tidak diceritakan. Klik kalau penasaran.</div>
+            <div class="spoiler-content">Inflasi Iran 47% per tahun. Rial kolaps — 1 USD = 500.000+ Rial di pasar gelap. Pengangguran pemuda di atas 25%. Internet dibatasi negara. Demonstrasi direspons kekerasan. Rupiah Indonesia dengan segala kelemahannya masih jauh lebih stabil. Dan warga Indonesia masih bebas membuka media sosial ini tanpa VPN.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-row">
+        <div class="comp-cell">
+          <span class="comp-label label-good-out">★ Eropa — Disorot</span>
+          <div class="highlighted">Eropa adalah surga: gaji tinggi, infrastruktur kelas dunia, kebebasan sipil. Banyak yang "kabur" ke sana — jauh dari Indonesia yang tidak maju-maju.</div>
+        </div>
+        <div class="comp-cell">
+          <span class="comp-label label-bad-out">— Dibandingkan Indonesia — Tersembunyi</span>
+          <div class="spoiler-block" onclick="this.classList.toggle('revealed')">
+            <div class="spoiler-hint">👁 Konten kreatornya lupa soal ini. Klik untuk ingat.</div>
+            <div class="spoiler-content">Krisis energi pasca invasi Rusia memukul Inggris, Jerman, Italia — tagihan listrik melonjak ratusan persen, jutaan warga masuk "energy poverty." Partai sayap kanan anti-imigran bangkit di mana-mana. WNI yang "kabur" ke sana tetap menghadapi diskriminasi dan status pekerja kelas dua — sesuatu yang tidak mereka alami di negeri sendiri.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-row">
+        <div class="comp-cell">
+          <span class="comp-label label-good-out">★ Amerika Serikat — Disorot</span>
+          <div class="highlighted">Amerika Serikat punya sistem kesehatan paling canggih di dunia. Rumah sakit terbaik, teknologi mutakhir, dokter spesialis terbaik. BPJS Indonesia tidak ada apa-apanya.</div>
+        </div>
+        <div class="comp-cell">
+          <span class="comp-label label-bad-out">— Dibandingkan Indonesia — Tersembunyi</span>
+          <div class="spoiler-block" onclick="this.classList.toggle('revealed')">
+            <div class="spoiler-hint">👁 Tidak cocok untuk musik sedih di background. Klik saja.</div>
+            <div class="spoiler-content">25–30 juta warga AS tidak punya asuransi kesehatan sama sekali. Premi asuransi swasta rata-rata USD 500–700/bulan. "Medical debt" adalah penyebab kebangkrutan pribadi nomor satu di Amerika. Sementara BPJS Indonesia menanggung 270 juta peserta dengan premi Rp 42.000/bulan — termasuk rawat inap, operasi, dan cuci darah.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAT BAND -->
+  <div class="stat-band reveal">
+    <div class="stat-band-inner">
+      <div>
+        <div class="stat-number">47%</div>
+        <div class="stat-label">Inflasi Iran puncak krisis sanksi (IMF, 2023)</div>
+      </div>
+      <div>
+        <div class="stat-number">0,72</div>
+        <div class="stat-label">Angka kelahiran Korsel — terendah di dunia (Statistics Korea, 2023)</div>
+      </div>
+      <div>
+        <div class="stat-number">30 jt</div>
+        <div class="stat-label">Warga AS tanpa asuransi kesehatan (U.S. Census Bureau, 2023)</div>
+      </div>
+      <div>
+        <div class="stat-number">270 jt</div>
+        <div class="stat-label">Peserta BPJS Kesehatan — program JKN terbesar di dunia</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLONIAL SECTION -->
+  <div class="colonial-section reveal">
+
+    <!-- VOC watermark SVG -->
+    <svg class="colonial-watermark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" stroke-width="3"/>
+      <text x="100" y="92" text-anchor="middle" font-family="Georgia, serif" font-size="50" font-weight="bold" fill="currentColor">VOC</text>
+      <text x="100" y="118" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="currentColor">1602 – 1799</text>
+      <circle cx="100" cy="100" r="72" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="5 4"/>
+    </svg>
+
+    <div class="colonial-badge">
+      <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor"><path d="M6 1L7.5 4.5H11L8.25 6.75L9.5 10.5L6 8.25L2.5 10.5L3.75 6.75L1 4.5H4.5Z"/></svg>
+      Kasus Khusus — Nostalgia Kolonial
+    </div>
+
+    <h3 class="colonial-title">Dijajah Belanda Lebih Enak?<br>Sejarah yang Dipotong di Menit yang Tepat</h3>
+
+    <p class="colonial-body">
+      Belakangan ini beredar konten yang memperlihatkan foto dan video infrastruktur era kolonial Belanda — jalan raya Anyer–Panarukan, gedung-gedung megah Batavia, sistem irigasi Hindia Belanda — dengan narasi tersirat: <strong>"dulu lebih teratur, dulu lebih bersih, dulu ada yang mengurus."</strong> Bahkan nama Daendels disebut-sebut sebagai "pemimpin visioner yang difitnah sejarah."
+    </p>
+    <p class="colonial-body">
+      Ini bukan sekadar perbandingan yang tidak adil. Ini adalah <strong>penulisan ulang sejarah yang berbahaya</strong> — mengambil estetika dari satu era, membuang seluruh konteks kemanusiaannya, lalu menjualnya sebagai argumen politik.
+    </p>
+
+    <div class="colonial-grid">
+
+      <div class="colonial-card">
+        <span class="colonial-card-label shown">⚡ Yang Ditampilkan — Disorot</span>
+        <div class="highlighted" style="border-radius:4px; font-size:0.88rem;">
+          Infrastruktur Hindia Belanda terlihat megah dalam foto-foto lama. Jalan raya, jalur kereta, kanal irigasi — "bukti" bahwa kolonial membangun Indonesia dengan serius.
+        </div>
+      </div>
+
+      <div class="colonial-card">
+        <span class="colonial-card-label hidden-lbl">🔒 Yang Disembunyikan — Klik Buka</span>
+        <div class="spoiler-block" onclick="this.classList.toggle('revealed')">
+          <div class="spoiler-hint">👁 Tidak cocok untuk musik sedih di background. Klik saja.</div>
+          <div class="spoiler-content">Jalan Anyer–Panarukan dibangun dengan sistem kerja rodi — rakyat dipaksa bekerja tanpa upah. Ribuan jiwa meninggal. Sistem Tanam Paksa (Cultuurstelsel, 1830–1870) memaksa petani menyerahkan 1/5 lahan atau 66 hari kerja/tahun, menyebabkan kelaparan massal yang menewaskan ratusan ribu orang di Jawa.</div>
+        </div>
+      </div>
+
+      <div class="colonial-card">
+        <span class="colonial-card-label shown">⚡ Yang Ditampilkan — Disorot</span>
+        <div class="highlighted" style="border-radius:4px; font-size:0.88rem;">
+          "Korupsi di Indonesia bermula dari pribumi sendiri." Belanda disebut memiliki sistem yang bersih dan teratur — kerusakan baru datang setelah kemerdekaan.
+        </div>
+      </div>
+
+      <div class="colonial-card">
+        <span class="colonial-card-label hidden-lbl">🔒 Yang Disembunyikan — Klik Buka</span>
+        <div class="spoiler-block" onclick="this.classList.toggle('revealed')">
+          <div class="spoiler-hint">👁 Spoiler: ini bukan yang kamu mau dengar. Klik tetap saja.</div>
+          <div class="spoiler-content">VOC bangkrut 1799 sebagian besar karena korupsi internal yang menggerogotinya selama puluhan tahun — hingga lahir sindiran populer "Vergaan Onder Corruptie" (Hancur karena Korupsi). Sistem kolonial didesain untuk mengekstraksi kekayaan, bukan membangun kesejahteraan penduduk lokal.</div>
+        </div>
+      </div>
+
+      <div class="colonial-card">
+        <span class="colonial-card-label shown">⚡ Yang Ditampilkan — Disorot</span>
+        <div class="highlighted" style="border-radius:4px; font-size:0.88rem;">
+          Daendels adalah administrator brilian yang membangun infrastruktur modern. Ia "difitnah" sejarah Indonesia karena kepentingan nasionalisme sempit.
+        </div>
+      </div>
+
+      <div class="colonial-card">
+        <span class="colonial-card-label hidden-lbl">🔒 Yang Disembunyikan — Klik Buka</span>
+        <div class="spoiler-block" onclick="this.classList.toggle('revealed')">
+          <div class="spoiler-hint">👁 Bagian yang bikin videonya tidak viral. Klik.</div>
+          <div class="spoiler-content">Daendels membangun infrastruktur militer untuk kepentingan pertahanan Prancis-Napoleon, bukan rakyat Jawa. De Grote Postweg menggunakan kerja paksa di mana korban jiwa dalam jumlah besar tercatat dalam laporan kolonial sendiri. Daendels juga menjual tanah Jawa kepada swasta Eropa dan brutal terhadap penguasa lokal yang tidak kooperatif.</div>
+        </div>
+      </div>
+
+      <div class="colonial-card">
+        <span class="colonial-card-label shown">⚡ Yang Ditampilkan — Disorot</span>
+        <div class="highlighted" style="border-radius:4px; font-size:0.88rem;">
+          Foto-foto lawas era kolonial memperlihatkan kota yang bersih, tertib, dan modern — "bukti visual" bahwa Indonesia lebih baik di bawah Belanda.
+        </div>
+      </div>
+
+      <div class="colonial-card">
+        <span class="colonial-card-label hidden-lbl">🔒 Yang Disembunyikan — Klik Buka</span>
+        <div class="spoiler-block" onclick="this.classList.toggle('revealed')">
+          <div class="spoiler-hint">👁 Terlalu rumit untuk kolom komentar. Klik untuk baca.</div>
+          <div class="spoiler-content">Foto-foto itu memotret kawasan Eropa di kota kolonial — bukan permukiman pribumi. Sistem Wijkenstelsel (apartheid de facto) memisahkan tempat tinggal berdasarkan ras. Penduduk asli dilarang tinggal di kawasan yang difoto. Kamera tidak pernah diarahkan ke kampung buruh perkebunan — bukan karena tidak ada, tapi karena tidak ada yang mau memotretnya.</div>
+        </div>
+      </div>
+
+      <div class="colonial-card">
+        <span class="colonial-card-label shown">⚡ Yang Ditampilkan — Disorot</span>
+        <div class="highlighted" style="border-radius:4px; font-size:0.88rem;">
+          Apartheid Afrika Selatan dikutuk seluruh dunia — ada pengadilan internasional, Truth & Reconciliation Commission, Nelson Mandela jadi simbol global. Bukti bahwa dunia bisa adil menghakimi sistem rasis.
+        </div>
+      </div>
+
+      <div class="colonial-card">
+        <span class="colonial-card-label hidden-lbl">🔒 Yang Disembunyikan — Klik Buka</span>
+        <div class="spoiler-block" onclick="this.classList.toggle('revealed')">
+          <div class="spoiler-hint">👁 Yang tidak pernah dibandingkan. Klik untuk lihat.</div>
+          <div class="spoiler-content">Sistem kolonial Belanda di Indonesia bekerja dengan mekanisme yang hampir identik: Wijkenstelsel memisahkan permukiman berdasarkan ras, tanah dirampas lewat Cultuurstelsel, pribumi dipaksa bekerja sebagai tenaga kelas dua di negeri sendiri. Apartheid berlangsung 46 tahun dan dikutuk dunia. Kolonialisme Belanda di Indonesia berlangsung 350 tahun — dan sebagian dari kita masih menontonnya dalam format konten nostalgia TikTok dan Instagram dengan jutaan views.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pull-quote" style="margin-top:2rem; margin-bottom:0;">
+      Menonton video infrastruktur kolonial tanpa menyebut Tanam Paksa adalah seperti memuji keindahan sebuah bangunan tanpa menyebut bahwa fondasinya dibangun dari tulang orang yang tidak dibayar.
+      <cite>— Sintesis historiografi kolonial Indonesia; lihat Ricklefs (2001) dan Van Niel (1992)</cite>
+    </div>
+  </div>
+
+  <!-- SVG BIAS KAMERA ILLUSTRATION -->
+  <div class="svg-break reveal">
+    <svg width="100%" viewBox="0 0 680 175" xmlns="http://www.w3.org/2000/svg" style="max-width:660px;">
+      <defs>
+        <linearGradient id="gleft" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#e87722" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#e87722" stop-opacity="0.3"/>
+        </linearGradient>
+        <linearGradient id="gright" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#666" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#666" stop-opacity="0.7"/>
+        </linearGradient>
+      </defs>
+      <!-- Left ellipse: yang ditampilkan -->
+      <ellipse cx="168" cy="87" rx="155" ry="68" fill="rgba(232,119,34,0.07)" stroke="url(#gleft)" stroke-width="2"/>
+      <text x="168" y="62" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#e87722" font-weight="800" letter-spacing="2">YANG DITAMPILKAN</text>
+      <text x="168" y="84" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#e87722" font-weight="500">Gedung megah, jalan mulus,</text>
+      <text x="168" y="102" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#e87722" font-weight="500">foto kawasan Eropa</text>
+      <!-- VS arrows -->
+      <line x1="332" y1="87" x2="362" y2="87" stroke="#888" stroke-width="1.5"/>
+      <polygon points="362,82 372,87 362,92" fill="#888"/>
+      <line x1="298" y1="87" x2="328" y2="87" stroke="#888" stroke-width="1.5"/>
+      <polygon points="298,82 288,87 298,92" fill="#888"/>
+      <text x="330" y="82" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#888" letter-spacing="1.5" font-weight="700">VS</text>
+      <!-- Right ellipse: yang dibuang -->
+      <ellipse cx="512" cy="87" rx="155" ry="68" fill="rgba(100,100,120,0.06)" stroke="url(#gright)" stroke-width="2" stroke-dasharray="7 4"/>
+      <text x="512" y="62" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#888" font-weight="800" letter-spacing="2">YANG DIBUANG</text>
+      <text x="512" y="84" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#666" font-weight="500">Kerja rodi, Tanam Paksa,</text>
+      <text x="512" y="102" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#666" font-weight="500">kampung buruh perkebunan</text>
+    </svg>
+    <p class="svg-break-caption">Bias kamera kolonial: kamera diarahkan ke satu sisi — sisi lainnya tidak pernah difoto, dan ketidakhadirannya dianggap sebagai bukti bahwa sisi itu tidak ada.</p>
+  </div>
+
+  <!-- OUTDOOR SECTION -->
+  <div class="outdoor-section reveal">
+    <!-- Animated phone SVG -->
+    <div class="phone-anim outdoor-icon">
+      <div class="phone-body">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-feed">
+            <div class="phone-card red"></div>
+            <div class="phone-card orange"></div>
+            <div class="phone-card grey"></div>
+            <div class="phone-card red"></div>
+            <div class="phone-card orange"></div>
+            <div class="phone-card grey"></div>
+            <div class="phone-card red"></div>
+            <div class="phone-card orange"></div>
+          </div>
+        </div>
+        <div class="phone-btn"></div>
+      </div>
+      <div class="phone-ping"></div>
+    </div>
+
+    <h2 class="outdoor-title">Coba Keluar Sebentar</h2>
+    <p class="outdoor-body">
+      Tutup layar HP-mu. Keluar rumah. Lihat jalanan, warung, tetangga, langit sore.<br><br>
+      <strong>Apakah yang kamu lihat benar-benar sehancur yang ada di internet?</strong><br><br>
+      Karena di konten perbandingan, kebaikan Indonesia harus diklik dulu untuk terlihat. Sementara keburukannya selalu tampil di depan, terang, tak perlu dicari.<br><br>
+      <em>Pertanyaannya: siapa yang mengatur kontrasnya?</em>
+    </p>
+  </div>
+
+  <!-- PROSE ANALISIS -->
+  <div class="prose reveal">
+    <p>
+      Fenomena ini bukan lahir dari kejahatan — ia lahir dari <strong>insentif</strong>. Platform digital mengganjar konten yang memancing reaksi emosional kuat. Dan tidak ada emosi yang lebih mudah dijual dari rasa minder kolektif yang dikemas sebagai pencerahan.
+    </p>
+    <p>
+      Psikolog Alfred Adler mendeskripsikan <strong>inferioritas kolektif</strong> sebagai mekanisme di mana kelompok membangun identitasnya di atas narasi kekalahan. Di era medsos, mekanisme ini mendapat bahan bakar baru: algoritma yang tidak peduli apakah perbandingannya adil — yang penting penonton terpancing untuk terus scroll.
+    </p>
+    <p>
+      Yang terjadi bukan analisis. Yang terjadi adalah <strong>cherry-picking sistematis</strong>: ambil satu puncak negara lain, bandingkan dengan satu lembah negara sendiri. Hal yang sama berlaku untuk nostalgia kolonial — ambil fotonya, buang konteksnya, jual sebagai argumen. Sejarah yang dipotong di menit yang paling menguntungkan narasi.
+    </p>
+    <p>
+      Kritik terhadap negara sendiri itu sehat — bahkan perlu. Tapi ada perbedaan besar antara <em>"sistem ini bermasalah, mari kita perbaiki"</em> dengan <em>"kita memang bangsa yang dari sononya gagal, bahkan zaman dijajah lebih enak."</em> Yang pertama adalah kritik. Yang kedua adalah konten — dan konten yang paling berbahaya adalah yang kelihatan seperti sejarah.
+    </p>
+  </div>
+
+  <!-- SARKAS: IDE KONTEN -->
+  <div class="ide-konten reveal">
+    <div class="ide-konten-badge">💡 Ide Konten Gratis</div>
+    <h3 class="ide-konten-title">Formula yang Terbukti Viral</h3>
+    <p class="ide-konten-body">
+      Ini sebenarnya ide konten yang <em>sangat bagus</em>. Membandingkan hal baik negara lain sambil menjelekkan negara sendiri — terbukti, akhir-akhir ini konten seperti ini <strong>rame sekali</strong>. Algoritmanya suka, kolom komentarnya hidup, dan penonton merasa jadi warga negara paling cerdas setelah menonton 8 menit video.
+    </p>
+    <p class="ide-konten-body">
+      Formulanya sederhana dan sudah teruji:
+    </p>
+    <div class="ide-konten-steps">
+      <div class="ide-step">
+        <span class="ide-step-num">01</span>
+        <span class="ide-step-text">Ambil satu hal terbaik dari negara A. Pastikan yang paling megah dan paling jauh dari konteks Indonesia.</span>
+      </div>
+      <div class="ide-step">
+        <span class="ide-step-num">02</span>
+        <span class="ide-step-text">Ambil satu hal terburuk dari Indonesia. Jangan tanya kenapa, jangan cari konteksnya — itu hanya akan merusak narasi.</span>
+      </div>
+      <div class="ide-step">
+        <span class="ide-step-num">03</span>
+        <span class="ide-step-text">Edit jadi video 8 menit. Tambahkan musik sedih. Voiceover yang dalam dan penuh keprihatinan.</span>
+      </div>
+      <div class="ide-step">
+        <span class="ide-step-num">04</span>
+        <span class="ide-step-text">Panen komentar "miris banget", "mau gimana lagi", dan tentu saja: "kapan Indonesia maju?"</span>
+      </div>
+    </div>
+    <div class="ide-contoh-viral">
+      <div class="ide-contoh-label">📱 Contoh Nyata yang Berhasil</div>
+      <div class="ide-contoh-inner">
+        <div class="ide-contoh-video">
+          <video
+            controls
+            preload="metadata"
+            style="width:100%; border-radius:8px; max-height:340px; background:#000;"
+            poster="">
+            <source src="https://edukbdi.github.io/indonesiavsluarnegeri/daendels_ai.mp4" type="video/mp4">
+            Browser kamu tidak mendukung video HTML5.
+          </video>
+        </div>
+        <div class="ide-contoh-text">
+          <p class="ide-contoh-judul">"Daendels Marah-Marah: Uang Pekerja Dikorupsi Pribumi!"</p>
+          <p class="ide-contoh-desc">
+            Video AI yang memvisualkan Daendels sebagai pemimpin yang <em>sebenarnya ingin membayar pekerja</em>, tapi uangnya dikorupsi para bupati pribumi — tersebar luas di berbagai platform. Formulanya sempurna: pahlawan kolonial yang dizalimi, penjahat pribumi, dan narasi yang membalik tanggung jawab sejarah 180 derajat.
+          </p>
+          <p class="ide-contoh-desc">
+            Yang tidak diceritakan: uang memang sampai ke bupati — tapi <strong>tidak ada satu pun arsip yang membuktikan uang itu sampai ke tangan pekerja</strong>. Dan bahkan andaipun terbayar penuh, ribuan pekerja tetap akan mati — bukan karena lapar, tapi karena malaria di hutan tanpa tenda dan obat-obatan. Daendels yang merancang sistem kerja paksa itu. Bukan bupati.
+          </p>
+          <a class="ide-contoh-link" href="https://edukbdi.github.io/deandles/" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Baca analisis lengkap: Membela Daendels dengan Cherry Picking → KBDI
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p class="ide-konten-kicker">
+      Silakan dicoba. Tapi mungkin tanya dulu ke dirimu sendiri: setelah videonya selesai ditonton, apa yang berubah?
+    </p>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="closing reveal">
+    <svg class="closing-ornament" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="80,8 96,52 140,52 106,76 120,120 80,96 40,120 54,76 20,52 64,52" fill="none" stroke="#e87722" stroke-width="2"/>
+      <circle cx="80" cy="80" r="66" fill="none" stroke="#e87722" stroke-width="0.8" stroke-dasharray="4 4"/>
+    </svg>
+
+    <h3 class="closing-title">Bukan Membela Buta</h3>
+    <p class="closing-body">
+      Artikel ini bukan membela Indonesia dari segala kritik. Indonesia punya banyak masalah nyata yang perlu dibenahi — dan sejarahnya, termasuk era kolonial, perlu dipelajari secara jujur dan lengkap. Tapi masalah nyata itu pantas mendapat analisis yang adil — bukan perbandingan yang cacat metodologinya, yang lebih banyak menjual pesimisme daripada mendorong perubahan.
+    </p>
+    <p class="closing-kicker">Tuntut standar yang sama untuk semua. Termasuk untuk cara kita membandingkan — dan cara kita membaca sejarah.</p>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources reveal">
+    <div class="sources-title">Referensi</div>
+    <ul class="sources-list">
+      <li>IMF World Economic Outlook Database — Data inflasi Iran 2022–2023</li>
+      <li>Statistics Korea (2023) — <em>Total Fertility Rate Report</em></li>
+      <li>OECD Employment Outlook — Jam kerja rata-rata per negara anggota</li>
+      <li>Kementerian Kesehatan Jepang — Laporan tahunan kasus Karoshi</li>
+      <li>Our World in Data — <em>COVID-19 Vaccination Statistics</em>, Indonesia</li>
+      <li>Reuters — <em>Iran's currency crisis and sanctions impact</em>, 2023</li>
+      <li>Henley Passport Index 2024 — Peringkat kekuatan paspor global</li>
+      <li>Eurostat — <em>Energy poverty statistics in the EU</em>, 2022–2023</li>
+      <li>Ricklefs, M.C. (2001). <em>A History of Modern Indonesia Since c. 1200</em>. Stanford University Press. — Sejarah kolonial dan Tanam Paksa</li>
+      <li>Van Niel, R. (1992). <em>Java's Northeast Coast 1740–1840</em>. KITLV Press. — Dokumentasi kerja rodi dan Cultuurstelsel</li>
+      <li>Gaastra, F.S. (2003). <em>The Dutch East India Company: Expansion and Decline</em>. Walburg Pers. — Korupsi internal VOC</li>
+      <li>Adler, A. (1927). <em>Understanding Human Nature</em>. Garden City Publishing. — Teori inferioritas kolektif</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+  const savedTheme = localStorage.getItem('kbdi-theme');
+  if (savedTheme === 'light') document.documentElement.classList.add('light');
+
+  fetch('https://edukbdi.github.io/header.html')
+    .then(r => r.text())
+    .then(html => {
+      document.body.insertAdjacentHTML('afterbegin', html);
+      const header = document.getElementById('kbdi-header');
+      if (savedTheme === 'light') header.classList.add('kbdi-light');
+      document.getElementById('kbdiThemeToggle').addEventListener('click', function() {
+        const isLight = document.documentElement.classList.toggle('light');
+        header.classList.toggle('kbdi-light', isLight);
+        localStorage.setItem('kbdi-theme', isLight ? 'light' : 'dark');
+        const footer = document.getElementById('kbdi-footer');
+        if (footer) footer.classList.toggle('kbdi-light', isLight);
+      });
+    });
+
+  fetch('https://edukbdi.github.io/footer.html')
+    .then(r => r.text())
+    .then(html => {
+      document.body.insertAdjacentHTML('beforeend', html);
+      const footer = document.getElementById('kbdi-footer');
+      if (footer && savedTheme === 'light') footer.classList.add('kbdi-light');
+    });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
